@@ -1,0 +1,23 @@
+# Python virtual environments
+.venv/
+venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Python build output
+build/
+dist/
+*.egg-info/
+
+# Local secrets and environment values
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
