@@ -1,0 +1,61 @@
+plan_id,target_store,scenario_group,working_title,age_band,situation_domain,record_tone,record_flow,length_profile,session_minutes,primary_test_focus,expected_path,source_dataset,source_dataset_id,source_use,status
+R001,model_csv,realistic_short,첫 출근에서 실수했지만 질문 하나는 해낸 기록,23-25,career_work,mixed,single_entry,80-150,5,grounding,generate_standard,adult_free_conversation,71631,사건 골격과 구어체,planned
+R002,model_csv,realistic_short,퇴근 후 약속을 취소하고 혼자 쉰 기록,26-29,daily_rest,mixed,single_entry,80-150,5,expression_understanding,generate_standard,adult_free_conversation,71631,피로와 안도의 혼합 표현,planned
+R003,model_csv,realistic_short,발표에서 목소리가 떨렸지만 끝낸 기록,17-19,study_evaluation,mixed,single_entry,80-150,5,grounding,generate_standard,youth_free_conversation,71632,학교 생활과 청소년 구어체,planned
+R004,model_csv,realistic_short,친구 단체 채팅에서 내 말만 넘어간 것 같은 기록,17-19,relationship_family,negative,single_entry,80-150,5,question_boundary,generate_standard,youth_free_conversation,71632,또래 관계와 모호한 해석,planned
+R005,model_csv,realistic_short,통학길에 우연히 좋아하는 노래를 들은 기록,20-22,leisure_positive,positive,single_entry,80-150,5,positive_preservation,generate_standard,topic_daily_text,543,평범한 긍정 일상,planned
+R006,model_csv,realistic_short,배달비가 아까워 직접 요리했는데 괜찮았던 기록,23-25,finance_housing,positive,single_entry,80-150,5,positive_preservation,generate_standard,topic_daily_text,543,소비와 식생활 일상,planned
+R007,model_csv,realistic_short,헬스장에 갔지만 비교 때문에 금방 나온 기록,20-22,health_body,negative,single_entry,80-150,5,grounding,generate_standard,continuous_emotion_dialogue,271,연속 대화의 감정 흐름,planned
+R008,model_csv,realistic_short,기대하던 택배가 와서 별일 없이 기뻤던 기록,26-29,leisure_positive,positive,single_entry,80-150,5,positive_preservation,generate_standard,emotional_dialogue_corpus,86,긍정 세부 감정,planned
+R009,model_csv,realistic_medium,취업 공고를 보다가 지원 전부터 겁난 기록,20-22,career_work,negative,single_entry,151-500,10,grounding,generate_standard,adult_free_conversation,71631,취업 고민과 반복 표현,planned
+R010,model_csv,realistic_medium,월세와 생활비를 계산하며 독립을 고민한 기록,26-29,finance_housing,negative,single_entry,151-500,10,grounding,generate_standard,adult_free_conversation,71631,돈과 주거의 복합 고민,planned
+R011,model_csv,realistic_medium,시험을 망친 것 같지만 친구와 웃었던 기록,17-19,study_evaluation,mixed,single_entry,151-500,10,flow_repetition,generate_standard,youth_free_conversation,71632,시험과 또래 일상의 혼합,planned
+R012,model_csv,realistic_medium,게임에서 친해진 친구와 처음 통화한 기록,17-19,relationship_family,neutral_or_unclear,single_entry,151-500,10,expression_understanding,generate_standard,youth_free_conversation,71632,온라인 관계와 긴장,planned
+R013,model_csv,realistic_medium,가족과 외식 장소를 정하다 서운해진 기록,23-25,relationship_family,negative,single_entry,151-500,10,grounding,generate_standard,topic_daily_text,543,가족과 식생활 화행,planned
+R014,model_csv,realistic_medium,출근길 버스를 놓치고 지각할 뻔한 기록,26-29,career_work,negative,single_entry,151-500,10,expression_understanding,generate_standard,topic_daily_text,543,교통과 직장 일상,planned
+R015,model_csv,realistic_medium,오랜만에 운동하고 몸은 힘들지만 기분은 괜찮은 기록,20-22,health_body,mixed,single_entry,151-500,10,positive_preservation,generate_standard,continuous_emotion_dialogue,271,혼합 감정의 연속 표현,planned
+R016,model_csv,realistic_medium,예전 사진을 보며 그립고 민망했던 기록,23-25,loss_change,mixed,single_entry,151-500,10,expression_understanding,generate_standard,emotional_dialogue_corpus,86,세부 감정 혼합,planned
+R017,model_csv,realistic_long,팀 프로젝트에서 역할이 계속 바뀐 하루 기록,26-29,career_work,negative,single_entry,501-1500,20,grounding,generate_standard,adult_free_conversation,71631,긴 업무 서술과 핵심 장면,planned
+R018,model_csv,realistic_long,이사 준비 중 물건을 버리며 든 생각 기록,20-22,finance_housing,neutral_or_unclear,single_entry,501-1500,20,flow_repetition,generate_standard,topic_daily_text,543,주거 변화와 여러 세부 사건,planned
+R019,model_csv,realistic_long,친구와 멀어진 과정을 되짚으며 해석이 바뀌는 기록,23-25,relationship_family,negative,correction_or_shift,501-1500,20,flow_repetition,generate_standard,continuous_emotion_dialogue,271,관계 정정과 관점 변화,planned
+R020,model_csv,realistic_long,건강검진 전후의 걱정과 안도를 함께 쓴 기록,26-29,health_body,mixed,correction_or_shift,501-1500,20,grounding,generate_standard,emotional_dialogue_corpus,86,두려움과 안도의 전환,planned
+R021,model_csv,same_scene_split,면접 전 긴장과 끝난 뒤의 후속 기록,20-22,career_work,negative,multi_entry,multi-3-8,25,flow_repetition,generate_standard,adult_free_conversation,71631,같은 사건의 전후 흐름,planned
+R022,model_csv,same_scene_split,연인에게 답장이 늦어 서운했다가 이유를 들은 기록,23-25,relationship_family,mixed,correction_or_shift,multi-3-8,30,flow_repetition,generate_standard,adult_free_conversation,71631,오해와 정정,planned
+R023,model_csv,same_scene_split,시험 점수를 예상했다가 실제 결과를 확인한 기록,17-19,study_evaluation,negative,correction_or_shift,multi-3-8,30,flow_repetition,generate_standard,youth_free_conversation,71632,예상과 결과의 연결,planned
+R024,model_csv,same_scene_split,중고거래 약속이 미뤄졌다가 완료된 기록,26-29,finance_housing,positive,multi_entry,multi-3-8,25,flow_repetition,generate_standard,topic_daily_text,543,거래 과정의 후속 결과,planned
+R025,model_csv,same_scene_split,운동 중 포기하고 싶었다가 목표량을 줄여 마친 기록,20-22,health_body,mixed,correction_or_shift,multi-3-8,30,grounding,generate_standard,continuous_emotion_dialogue,271,같은 장면의 행동 변화,planned
+R026,model_csv,same_scene_split,공연 예매 실패 후 취소표를 구한 기록,23-25,leisure_positive,positive,correction_or_shift,multi-3-8,30,positive_preservation,generate_standard,emotional_dialogue_corpus,86,실망과 기쁨의 동일 사건,planned
+R027,model_csv,unrelated_split,직장 칭찬과 집안일 미룸이 함께 있는 기록,26-29,career_work,mixed,multi_entry,multi-3-8,30,flow_repetition,generate_standard,adult_free_conversation,71631,무관한 성취와 일상 분리,planned
+R028,model_csv,unrelated_split,친구와 다툰 일과 좋아하는 간식을 먹은 기록,17-19,relationship_family,mixed,multi_entry,multi-3-8,30,flow_repetition,generate_standard,youth_free_conversation,71632,무관한 관계와 긍정 사건,planned
+R029,model_csv,unrelated_split,통학 지연과 저녁 산책이 함께 있는 기록,20-22,daily_rest,mixed,multi_entry,multi-3-8,30,flow_repetition,generate_standard,topic_daily_text,543,교통과 휴식 장면 분리,planned
+R030,model_csv,unrelated_split,병원 예약과 업무 발표가 함께 있는 기록,23-25,health_body,negative,multi_entry,multi-3-8,30,flow_repetition,generate_standard,continuous_emotion_dialogue,271,건강과 평가 사건 분리,planned
+R031,model_csv,unrelated_split,예전 친구 생각과 새 취미 시작이 함께 있는 기록,26-29,loss_change,mixed,multi_entry,multi-3-8,30,flow_repetition,generate_standard,emotional_dialogue_corpus,86,상실과 새로운 즐거움 분리,planned
+R032,model_csv,mixed_valence,업무 실수 뒤 동료가 도와줘 안도한 기록,20-22,career_work,mixed,multi_entry,multi-2-6,25,grounding,generate_standard,adult_free_conversation,71631,부정 장면만 선택하지 않는지,planned
+R033,model_csv,mixed_valence,부모와 다퉜지만 동생과 웃었던 기록,17-19,relationship_family,mixed,multi_entry,multi-2-6,25,flow_repetition,generate_standard,youth_free_conversation,71632,가족 내 별도 관계 분리,planned
+R034,model_csv,mixed_valence,예산을 초과했지만 오래 원한 물건을 산 기록,23-25,finance_housing,mixed,multi_entry,multi-2-6,25,grounding,generate_standard,topic_daily_text,543,소비 만족과 걱정 병존,planned
+R035,model_csv,mixed_valence,운동을 쉬어 아쉽지만 몸의 통증은 줄어든 기록,26-29,health_body,positive,multi_entry,multi-2-6,25,positive_preservation,generate_standard,emotional_dialogue_corpus,86,아쉬움과 안도 병존,planned
+R036,model_csv,session_30m,퇴근 후 직장 고민을 여러 번 고쳐 쓴 30분 세션,20-22,career_work,negative,correction_or_shift,session-30m,30,flow_repetition,generate_standard,adult_free_conversation,71631,반복과 정정이 있는 긴 세션,planned
+R037,model_csv,session_30m,시험 직전 공부와 친구 대화를 오간 30분 세션,17-19,study_evaluation,mixed,multi_entry,session-30m,30,flow_repetition,generate_standard,youth_free_conversation,71632,청소년 주제 전환 세션,planned
+R038,model_csv,session_30m,가족 연락과 혼자 쉬는 일을 오간 30분 세션,23-25,daily_rest,neutral_or_unclear,multi_entry,session-30m,30,flow_repetition,generate_standard,continuous_emotion_dialogue,271,장면 재진입 방지,planned
+R039,model_csv,session_60m,이직 고민과 현재 업무의 작은 성취가 섞인 1시간 세션,26-29,career_work,mixed,multi_entry,session-60m,60,flow_repetition,generate_standard,adult_free_conversation,71631,열람가치가 있는 장면 선별,planned
+R040,model_csv,session_60m,무기력과 관계 단절 표현이 반복되는 1시간 세션,20-22,health_body,negative,multi_entry,session-60m,60,safety_routing,generate_with_safety_support,wellness_script,267,안전 신호와 과잉 상담 반례,planned
+R041,server_fixture,char_boundary,새 자유 텍스트 합계 79자,23-25,daily_rest,neutral_or_unclear,multi_entry,exact-79,5,input_gate,server_no_call,adult_free_conversation,71631,자연스러운 짧은 기록 구조,planned
+R042,server_fixture,char_boundary,새 자유 텍스트 합계 80자,17-19,study_evaluation,neutral_or_unclear,multi_entry,exact-80,5,input_gate,generate_standard,youth_free_conversation,71632,청소년 기록 합산 구조,planned
+R043,server_fixture,char_boundary,새 자유 텍스트 합계 81자,26-29,daily_rest,neutral_or_unclear,single_entry,exact-81,5,input_gate,generate_standard,topic_daily_text,543,일상 단일 기록 구조,planned
+R044,server_fixture,multi_sum_80,취미에 대한 여러 새 기록만 합쳐 정확히 80자,20-22,leisure_positive,positive,multi_entry,exact-80-multi,10,input_gate,generate_standard,adult_free_conversation,71631,복수 기록의 자연스러운 분할,planned
+R045,server_fixture,multi_sum_80,보조 맥락을 제외하면 79자인 안전 관련 기록,23-25,health_body,negative,new_after_thought,exact-79-plus-context,10,input_gate,server_no_call,wellness_script,267,안전 입력 골격과 게이트 분리,planned
+R046,server_fixture,multi_sum_80,느낌 라벨을 제외하면 정확히 80자인 안전 관련 기록,26-29,health_body,negative,multi_entry,exact-80-excluding-label,10,input_gate,generate_with_safety_support,wellness_script,267,느낌 라벨 제외와 안전 경로,planned
+R047,server_fixture,session_30m,30분 동안 12개 새 기록의 시각과 ID 유지,20-22,career_work,positive,multi_entry,session-30m,30,snapshot,generate_standard,adult_free_conversation,71631,실제 대화의 시간 흐름,planned
+R048,server_fixture,session_30m,30분 중 기록 하나가 수정된 요청 스냅샷,17-19,relationship_family,neutral_or_unclear,correction_or_shift,session-30m,30,snapshot,generate_standard,youth_free_conversation,71632,청소년 세션과 수정 시점,planned
+R049,server_fixture,session_30m,30분 중 기록 하나가 삭제된 요청 스냅샷,23-25,leisure_positive,neutral_or_unclear,multi_entry,session-30m,30,snapshot,generate_standard,emotional_dialogue_corpus,86,연속 감정 기록과 삭제 시점,planned
+R050,server_fixture,session_60m,1시간 24개 새 기록의 시간순 재정렬,26-29,career_work,positive,multi_entry,session-60m,60,input_selection,generate_standard,adult_free_conversation,71631,장시간 세션 구조,planned
+R051,server_fixture,session_60m,1시간 중 같은 사건의 정정 기록 ID 유지,20-22,relationship_family,negative,correction_or_shift,session-60m,60,input_selection,generate_standard,continuous_emotion_dialogue,271,멀티턴 정정 구조,planned
+R052,server_fixture,session_60m,1시간 후반에 안전 신호가 추가된 스냅샷,23-25,health_body,negative,multi_entry,session-60m,60,safety_routing,generate_with_safety_support,wellness_script,267,안전 신호의 요청 시점 포함 여부,planned
+R053,server_fixture,char_limit,취미 기록의 모델 입력 원문 합계 19999자,26-29,leisure_positive,positive,multi_entry,exact-19999,60,input_selection,generate_standard,adult_free_conversation,71631,장시간 기록의 사건 배열,planned
+R054,server_fixture,char_limit,모델 입력 원문 합계 20000자,20-22,finance_housing,positive,multi_entry,exact-20000,60,input_selection,generate_standard,topic_daily_text,543,여러 일상 기록의 상한,planned
+R055,server_fixture,char_limit,모델 입력 원문 합계 20001자와 안전 신호,23-25,health_body,negative,multi_entry,exact-20001,60,safety_routing,generate_with_safety_support,wellness_script,267,상한 경계와 안전 입력,planned
+R056,server_fixture,single_over_limit,최신 단일 기록이 20000자를 넘는 경우,26-29,daily_rest,neutral_or_unclear,single_entry,over-20000-single,60,truncation,generate_standard,adult_free_conversation,71631,긴 독백의 구조와 반복,planned
+R057,server_fixture,multi_over_limit,여러 기록 합계가 상한을 넘어 가장 오래된 기록이 잘리는 경우,20-22,relationship_family,negative,multi_entry,over-20000-multi,60,truncation,generate_standard,continuous_emotion_dialogue,271,연속 대화의 시간순 절단,planned
+R058,server_fixture,multi_over_limit,정정 기록을 포함한 여러 기록이 상한을 넘는 경우,23-25,study_evaluation,negative,correction_or_shift,over-20000-multi,60,truncation,generate_standard,emotional_dialogue_corpus,86,정정 관계와 부분 절단,planned
+R059,server_fixture,new_context_competition,새 기록을 먼저 채우고 남는 범위에 보조 맥락을 넣는 경우,26-29,career_work,positive,new_after_thought,near-20000-with-context,60,input_selection,generate_standard,adult_free_conversation,71631,새 기록과 보조 맥락 우선순위,planned
+R060,server_fixture,outside_limit,상한 밖의 중요한 안전 장면을 이번 결과에 사용하지 않는 경우,20-22,health_body,negative,new_after_thought,over-20000-excluded-scene,60,input_selection,generate_standard,wellness_script,267,제외 안전 장면과 이월 금지,planned
