@@ -1,7 +1,7 @@
 ---
 type: Handoff Index
 title: Pebbling 속마음 앱 개발 인계
-description: 앱 개발자가 속마음 생성 런타임 변경 요청과 제외 범위를 확인하는 시작 문서.
+description: 앱 개발자가 속마음 생성 런타임과 독립 UI 변경 요청을 확인하는 시작 문서.
 tags: [pebbling, ai, developer-handoff, index]
 timestamp: 2026-08-13T00:00:00+09:00
 status: active
@@ -91,6 +91,13 @@ baseline_commit: 44bc01c4a7b75f16e867c8848a90b33c1405ecbe
 - 새 DB migration과 v060 finalize
 - 앱·서버 수용 테스트와 UI QA
 
+### 별도 VentChat UI 작업
+
+VentChat의 사용자 기록 시간 표시를 변경할 때는
+[VentChat 사용자 기록 시간 묶음 변경 요청](VentChat-사용자-기록-시간-묶음-변경요청.md)을
+읽는다. 이 작업은 위 AI 런타임 변경과 독립적이며, 시간 표시 작업만 한다면 AI
+런타임 문서를 구현 범위로 읽을 필요가 없다.
+
 ## 이번 작업에서 제외
 
 개발자님은 다음을 수정하지 않는다.
@@ -113,11 +120,13 @@ Prompt Lab은 제품 책임자가 별도 비공개 저장소에서 테스트·�
 |---|---|---|
 | [속마음 앱 런타임 변경 요청](속마음-출력계약-Moderation-저장-변경요청.md) | **ACTIVE** | 이번 앱·서버·DB 구현의 총괄 기준 |
 | [속마음 PII 최소 치환 지시서](속마음-PII-결정적-검사-마스킹-상세기획.md) | **ACTIVE COMPANION** | PII exact match 치환과 테스트의 최소 기준 |
+| [VentChat 사용자 기록 시간 묶음 변경 요청](VentChat-사용자-기록-시간-묶음-변경요청.md) | **ACTIVE UI** | VentChat 시간 표시 작업의 독립 구현 기준 |
 | `implementation/`, `validation/` | REFERENCE | 배경 확인용. 수치·흐름은 ACTIVE 우선 |
 | [과거 구현·Prompt Lab 문서](archive/README.md) | **ARCHIVE** | 현재 구현 기준으로 읽거나 전달하지 않음 |
 
-> 개발자는 루트의 ACTIVE 문서 두 개만 구현 기준으로 사용한다. `archive/`는
-> 결정 이력을 확인해야 할 때만 열고, 개발 전달 묶음에는 포함하지 않는다.
+> AI 런타임 작업은 ACTIVE 문서와 ACTIVE COMPANION을 함께 읽는다. VentChat 시간
+> 표시 작업은 ACTIVE UI 문서만 읽는다. `archive/`는 결정 이력을 확인해야 할 때만
+> 열고, 개발 전달 묶음에는 포함하지 않는다.
 
 > 과거 문서의 `1~20개 / 300자 / 3,000자`, SDK 추가, standalone
 > Moderation, flagged 미노출, Moderation 기반 재생성, 최대 3회 의미 생성은
