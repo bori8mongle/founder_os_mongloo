@@ -113,12 +113,11 @@ Prompt Lab은 제품 책임자가 별도 비공개 저장소에서 테스트·�
 |---|---|---|
 | [속마음 앱 런타임 변경 요청](속마음-출력계약-Moderation-저장-변경요청.md) | **ACTIVE** | 이번 앱·서버·DB 구현의 총괄 기준 |
 | [속마음 PII 최소 치환 지시서](속마음-PII-결정적-검사-마스킹-상세기획.md) | **ACTIVE COMPANION** | PII exact match 치환과 테스트의 최소 기준 |
-| [속마음 결정적 출력 검사 P0](속마음-결정적-출력검사-P0-변경요청.md) | SUPERSEDED | 과거 논의 근거만 참고 |
-| [속마음 D안 런타임 변경 요청](속마음-D안-런타임-변경요청.md) | SUPERSEDED IN PART | 배경만 참고. 충돌하면 ACTIVE 우선 |
-| [속마음 운영 안전·복구 추가 수정 요청](속마음-운영-안전-복구-추가수정요청.md) | SUPERSEDED | 구현 기준으로 사용하지 않음 |
-| Prompt Lab 관련 문서 | OUT OF SCOPE | 이번 개발자님 작업에서 읽거나 수정할 필요 없음 |
 | `implementation/`, `validation/` | REFERENCE | 배경 확인용. 수치·흐름은 ACTIVE 우선 |
-| PPT·inspect 산출물 | SNAPSHOT | 갱신하거나 구현 기준으로 사용하지 않음 |
+| [과거 구현·Prompt Lab 문서](archive/README.md) | **ARCHIVE** | 현재 구현 기준으로 읽거나 전달하지 않음 |
+
+> 개발자는 루트의 ACTIVE 문서 두 개만 구현 기준으로 사용한다. `archive/`는
+> 결정 이력을 확인해야 할 때만 열고, 개발 전달 묶음에는 포함하지 않는다.
 
 > 과거 문서의 `1~20개 / 300자 / 3,000자`, SDK 추가, standalone
 > Moderation, flagged 미노출, Moderation 기반 재생성, 최대 3회 의미 생성은

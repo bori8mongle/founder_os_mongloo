@@ -3,7 +3,7 @@ type: Developer Change Request
 title: Prompt Lab 안전·복구 추가 수정 요청
 description: 현재 Prompt Lab 구현을 보존하면서 운영 안전·복구 변경을 검증할 수 있게 만드는 차이 중심 작업지시서.
 tags: [pebbling, prompt-lab, safety, moderation, recovery, evaluation]
-status: ready_for_development
+status: archived
 audience: [developer, product_manager]
 owner: 김세인
 created_at: 2026-07-30
@@ -39,7 +39,7 @@ Prompt Lab을 다시 설계하지 않는다. 운영 안전·복구 변경이 제
 확인하기 위한 최소 변경만 한다.
 
 운영 분기의 단일 기준은
-[앱·서버 변경요청서의 전체 처리 플로우와 분기 정의표](속마음-운영-안전-복구-추가수정요청.md#01-전체-처리-플로우--구현-분기의-단일-기준)다.
+[앱·서버 변경요청서의 전체 처리 플로우와 분기 정의표](../runtime/속마음-운영-안전-복구-추가수정요청.md#01-전체-처리-플로우--구현-분기의-단일-기준)다.
 Prompt Lab은 같은 모의 응답 순서에서 운영과 동일한 최종 상태, 차감 여부와
 분석 기준 갱신 여부를 내야 한다. 이 문서에서 분기 정의를 별도로 만들지 않는다.
 

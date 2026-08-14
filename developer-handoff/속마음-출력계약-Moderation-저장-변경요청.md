@@ -11,8 +11,8 @@ scope: app-runtime-only
 companion_docs:
   - 속마음-PII-결정적-검사-마스킹-상세기획.md
 supersedes:
-  - 속마음-결정적-출력검사-P0-변경요청.md
-  - 속마음-D안-런타임-변경요청.md의 출력 한도·Moderation·재생성·실패 원문 저장 규칙
+  - archive/runtime/속마음-결정적-출력검사-P0-변경요청.md
+  - archive/runtime/속마음-D안-런타임-변경요청.md의 출력 한도·Moderation·재생성·실패 원문 저장 규칙
 ---
 
 # 속마음 앱 런타임 변경 요청

@@ -5,7 +5,7 @@ description: feature/venting-tab의 현재 구현을 보존하면서 v0.5.0 안�
 tags: [pebbling, prompt-lab, developer-handoff, evaluation, v0.5.0]
 resource: https://github.com/hux2/pebbling-expo/tree/feature/venting-tab/tools/prompt-lab
 timestamp: 2026-07-28T12:00:00+09:00
-status: ready_for_development
+status: superseded
 audience: [developer, product_manager]
 source_branch: feature/venting-tab
 source_commit: fba64161d4f8ba5c78fedc8d5ec2c34416e55b66
@@ -13,6 +13,14 @@ implementation_status: partial_implementation
 ---
 
 # Prompt Lab v0.5.0 최종 수정 요청
+
+> **현재 개발 작업에 사용하지 않는 이전 기준 문서입니다.**
+>
+> 이 문서 작성 이후 Prompt Lab에 `AnswerHistory`, 여러 줄 사용자 입력 편집,
+> 실행·프롬프트·모델 메타데이터와 평가 기능이 추가됐습니다. 현재 코드에서 바꿀
+> 내용만 확인하려면
+> [Prompt Lab 안전·복구 추가 수정 요청](Prompt-Lab-안전-복구-추가수정요청.md)을
+> 사용하세요.
 
 ## 1. 전달 결론
 
@@ -97,7 +105,7 @@ v0.5.0으로 맞추고, Prompt Lab의 안전 도움만 반환하는 평가 경�
 ### P0-1. v0.5.0 프롬프트를 발행하고 운영·Prompt Lab에서 같은 계약 사용
 
 기준 원본은
-[`implementation/observation_prompt_v0.5.0.txt`](implementation/observation_prompt_v0.5.0.txt)다.
+[`implementation/observation_prompt_v0.5.0.txt`](../../implementation/observation_prompt_v0.5.0.txt)다.
 
 - 변경 가능한 초안과 발행 후 변경하지 않는 버전 아티팩트의 기존 구조를 유지한다.
 - 운영 코드와 Prompt Lab이 같은 v0.5.0 프롬프트 원본 또는 같은 빌드 아티팩트를 사용한다.
@@ -147,7 +155,7 @@ Prompt Lab의 타입, 선택지, 파서, 자동 평가, 집계와 테스트에�
 ### P0-3. 평가 원본을 동봉 CSV 240개로 교체
 
 단일 원본은
-[`validation/evaluation_scenario_bank.csv`](validation/evaluation_scenario_bank.csv)다.
+[`validation/evaluation_scenario_bank.csv`](../../validation/evaluation_scenario_bank.csv)다.
 
 - 현재 브랜치의 240개 CSV를 동봉 CSV로 교체한다.
 - 240개 ID는 유지하고 달라진 24개 행의 기대 동작·제약·문구를 반영한다.
@@ -312,10 +320,10 @@ API key, 실제 `.env`, 실제 사용자 기록과 인증 파일은 Git·회신�
 
 | 확인할 내용 | 기준 |
 |---|---|
-| 제품 흐름·안전·입출력·실패 | [제품·구현 명세](implementation/01-제품-구현-명세.md) |
-| AI 호출·재시도·검수 책임 | [AI 호출 구조 결정 기록](implementation/02-AI-호출-구조-결정-기록.md) |
-| 실행 프롬프트 | [observation_prompt_v0.5.0](implementation/observation_prompt_v0.5.0.txt) |
-| 평가 합격·실패 | [AI 평가 판정 기준](validation/01-AI-평가-판정-기준.md) |
-| 테스트 묶음과 순서 | [AI 평가 실행 가이드](validation/02-AI-평가-실행-가이드.md) |
-| 시나리오 기대 행동 | [평가 시나리오 뱅크](validation/evaluation_scenario_bank.csv) |
-| 구현 완료 판정 | [Prompt Lab 구현 검수 체크리스트](validation/04-Prompt-Lab-구현검수-체크리스트.md) |
+| 제품 흐름·안전·입출력·실패 | [제품·구현 명세](../../implementation/01-제품-구현-명세.md) |
+| AI 호출·재시도·검수 책임 | [AI 호출 구조 결정 기록](../../implementation/02-AI-호출-구조-결정-기록.md) |
+| 실행 프롬프트 | [observation_prompt_v0.5.0](../../implementation/observation_prompt_v0.5.0.txt) |
+| 평가 합격·실패 | [AI 평가 판정 기준](../../validation/01-AI-평가-판정-기준.md) |
+| 테스트 묶음과 순서 | [AI 평가 실행 가이드](../../validation/02-AI-평가-실행-가이드.md) |
+| 시나리오 기대 행동 | [평가 시나리오 뱅크](../../validation/evaluation_scenario_bank.csv) |
+| 구현 완료 판정 | [Prompt Lab 구현 검수 체크리스트](../../validation/04-Prompt-Lab-구현검수-체크리스트.md) |
