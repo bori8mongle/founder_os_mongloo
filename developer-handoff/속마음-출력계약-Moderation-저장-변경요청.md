@@ -8,6 +8,8 @@ source_repository: https://github.com/hux2/pebbling-expo.git
 source_branch: dev
 baseline_commit: 44bc01c4a7b75f16e867c8848a90b33c1405ecbe
 scope: app-runtime-only
+companion_docs:
+  - 속마음-PII-결정적-검사-마스킹-상세기획.md
 supersedes:
   - 속마음-결정적-출력검사-P0-변경요청.md
   - 속마음-D안-런타임-변경요청.md의 출력 한도·Moderation·재생성·실패 원문 저장 규칙
@@ -24,6 +26,10 @@ supersedes:
 
 이번 작업에는 Prompt Lab, Google Sheets, 평가 AI, 테스트 케이스 화면이 포함되지
 않는다. 해당 도구는 제품 책임자가 별도 저장소에서 관리한다.
+
+PII 치환·저장·테스트의 최소 기준은
+[속마음 PII 최소 치환 지시서](속마음-PII-결정적-검사-마스킹-상세기획.md)를
+함께 따른다. PII 처리에서 두 문서가 다르면 해당 상세기획이 우선한다.
 
 과거 문서와 충돌하면 이 문서가 우선한다. 다음 과거 기준은 구현하지 않는다.
 
@@ -50,12 +56,14 @@ supersedes:
 | 실패 후보 | 실패 사유와 생성 후보를 서버 전용 DB에 저장 |
 | 교정 생성 | 구조·개수·길이 오류에만 최대 1회 |
 | Moderation 재생성 | 없음 |
-| PII·안전 조합 오류 재생성 | 없음 |
+| PII | 입력과 출력에 똑같이 반복된 3종만 문자열 치환 후 같은 후보 사용. 재생성 없음 |
+| 안전 조합 오류 재생성 | 없음 |
 | 기술 재시도 | 현재의 timeout·일시 오류 재시도만 유지. 새 재시도 정책 추가 안 함 |
 | SDK | 현재 REST `fetch()` 유지 |
 
 Moderation은 이번 버전에서 자동 차단 장치가 아니라 개선을 위한 관찰 신호다.
-다만 JSON·출력 계약·PII·안전 상태 조합 검사는 계속 실제 노출 조건으로 사용한다.
+JSON·출력 계약·안전 상태 조합 검사는 실제 노출 조건으로 사용하고, PII exact
+match는 실패시키지 않고 코드로 치환한다.
 
 ### 읽기 전에 알아둘 뜻
 
@@ -85,7 +93,7 @@ Moderation은 이번 버전에서 자동 차단 장치가 아니라 개선을 �
 | Moderation 저장 | 상세 결과를 DB에 저장하지 않음 | input/output의 type·flagged·categories·scores·applied input types를 저장 |
 | flagged 처리 | 새로운 후보 생성, 반복 시 실패 | 같은 후보를 저장·차감·표시 |
 | Moderation error | 생성 실패로 이어질 수 있음 | 오류만 저장하고 정상 후보 계속 처리 |
-| 실패 후보 원문 | 저장하지 않음 | 실패 코드와 함께 서버 전용 DB에 보관 |
+| 실패 후보 본문 | 저장하지 않음 | PII 치환 후 실패 코드와 함께 서버 전용 DB에 보관 |
 | DB 배열 제약 | 3~7개 | 2~10개 |
 
 인증, quota 사전검사, 요청 스냅샷, `store:false`, 구조화 출력, 요청 멱등성,
@@ -107,7 +115,7 @@ observation·차감·entry 소비의 원자적 finalize는 유지한다.
    ├─ JSON·필드 타입·개수·길이 실패
    │   └─ 직전 후보와 정확한 오류 코드로 교정 생성 최대 1회
    ├─ 직접 식별정보 반복
-   │   └─ 고확신 값만 코드 마스킹 후 재검사
+   │   └─ 입력과 출력에 똑같이 반복된 3종만 코드 치환 후 같은 후보 사용
    └─ 안전 상태 조합 오류 또는 최종 실패
        └─ 추가 생성 없이 기존 실패 API 응답
 ```
@@ -122,7 +130,7 @@ observation·차감·entry 소비의 원자적 finalize는 유지한다.
 | 빈 말풍선 일부 | 빈 항목 제거 후 후보 | 없음 | 재검사 통과 시 정상 처리 |
 | JSON·개수·길이 실패 | 교정 후보 | 최대 1회 | 교정 통과 시 정상 처리 |
 | 교정 후보도 실패 | 기존 생성 실패 화면 | 없음 | 미차감·entry 미소비 |
-| PII를 안전하게 마스킹하지 못함 | 기존 생성 실패 화면 | 없음 | 미차감·entry 미소비 |
+| PII exact match 치환 | 치환된 같은 후보 | 없음 | 정상 저장·1회 차감 |
 | 유효하지 않은 안전 조합 | 기존 실패 API 계약 | 없음 | 미차감·entry 미소비 |
 | Responses 요청 전체 실패 | 기존 실패 화면 | 없음. 기존 기술 재시도만 별도 유지 | 최종 실패 시 미차감 |
 
@@ -202,7 +210,6 @@ ALL_BUBBLES_EMPTY
 BUBBLE_TOO_LONG
 TOTAL_LENGTH_EXCEEDED
 INVALID_SAFETY_COMBINATION
-PII_ECHO_DETECTED
 PROVIDER_REFUSAL
 ```
 
@@ -224,13 +231,13 @@ Moderation과 전체 검사를 거친다. 실패하면 세 번째 후보를 만�
 재생성하지 않는 항목:
 
 - input/output Moderation flagged 또는 error
-- `PII_ECHO_DETECTED`
 - `INVALID_SAFETY_COMBINATION`
 - 사용자 부정 피드백이나 별도 품질 점수
 
-PII는 기존에 검출하는 고확신 전화번호·이메일·상세 주소·주민등록번호 형태·긴 숫자
-식별자만 코드로 마스킹한다. 안전하게 마스킹하지 못하면 기존 생성 실패 응답을
-사용한다.
+PII는 입력에 있던 이메일·한국 휴대전화·주민/외국인등록번호형이 출력에 같은
+문자열로 반복된 경우에만 코드로 치환한다. 유사값 정규화나 추가 추론은 하지
+않으며, PII 발견 자체는 실패가 아니다. 정확한 기준은 PII 최소 치환 지시서를
+따른다.
 
 ### 5.4 실패 후보와 Moderation 저장
 
@@ -245,9 +252,8 @@ P0 필수 정보:
 |---|---|
 | 연결 | `id`, `user_id`, `request_id`, `attempt_no`, `attempt_type` |
 | 재현 | `model_id`, `prompt_version`, `policy_version`, `provider_response_id` |
-| 후보 | `raw_output`, 파싱 결과 유형·bubbles·route·priority |
+| 후보 | `candidate_output`, PII 치환 후 파싱 결과 유형·bubbles·route·priority |
 | 검사 | `validator_passed`, `failure_stage`, `failure_codes`, 개수·길이·질문 지표 |
-| PII | `pii_echo_detected`, `pii_masked` |
 | Moderation | `input_moderation`, `output_moderation` JSONB |
 | 결과 | `candidate_decision` (`selected` / `rejected` / `provider_failed`) |
 | 보관 | `created_at` |
@@ -263,8 +269,9 @@ P0 필수 정보:
 - provider가 실제로 반환한 input/output Moderation 상태와 전체 검사 결과를
   저장한다. provider 전체 실패로 받은 후보가 없으면 해당 필드는 null일 수
   있다.
-- `raw_output`은 flagged 후보 또는 내부 검사 실패 후보에 저장한다.
-- PII 실패 후보는 식별정보를 마스킹한 텍스트만 저장한다.
+- `candidate_output`은 flagged 후보 또는 내부 검사 실패 후보에 저장한다.
+- 후보 본문은 PII 최소 치환 함수를 거친 값만 저장한다. 치환 전 provider 출력은
+  저장하거나 일반 로그로 남기지 않는다.
 - 전체 API 요청 body, API key, header, 시스템 프롬프트와 사용자 입력 원문을
   attempts에 복제하지 않는다.
 - `(request_id, attempt_no)`를 unique로 두어 replay·기술 재시도 중복을 방지한다.
@@ -279,7 +286,7 @@ P0 필수 정보:
 - attempts 저장 실패 때문에 계약을 통과한 사용자 결과를 숨기거나 다시 생성하지
   않는다. 비민감 저장 오류 코드만 남긴다.
 
-실패·flagged 후보 원문의 **보관 기간, `delete_at`, 자동 삭제 Cron은 이번
+실패·flagged 후보 본문의 **보관 기간, `delete_at`, 자동 삭제 Cron은 이번
 구현 범위에 넣지 않는다.** 사용자 또는 원본 request가 삭제되면 cascade로
 함께 삭제되게 한다. 기간 기반 삭제는 실제 검토 주기와 개인정보처리방침을
 확정한 뒤 별도로 결정한다.
@@ -371,8 +378,9 @@ flagged/error는 `regeneration_reason`으로 기록하지 않는다.
 - [ ] `type:error`가 같은 후보로 저장·표시되고 오류 message가 기록됨
 - [ ] flagged/error 때문에 generation call count가 증가하지 않음
 - [ ] standalone `/v1/moderations` 호출이 없음
-- [ ] flagged·내부 검사 실패 후보의 원문과 실패 코드 저장
-- [ ] PII 실패 후보 원문은 마스킹 후 저장
+- [ ] flagged·내부 검사 실패 후보의 PII 치환된 본문과 실패 코드 저장
+- [ ] 같은 값이 출력에 반복되면 코드 치환 후 재생성 없이 정상 표시·차감
+- [ ] 치환 전 PII가 생성 결과·진단 후보·metrics·일반 로그에 없음
 - [ ] 동일 request replay가 attempt 중복 행을 만들지 않음
 - [ ] authenticated 앱 사용자가 attempts를 직접 조회하지 못함
 
